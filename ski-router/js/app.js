@@ -89,6 +89,7 @@
     try {
       plan = Router.planRoute(RESORT, opts);
     } catch (err) {
+      clearRoute();
       renderWarnings([{ name: '规划失败', reason: err.message }]);
       return;
     }
@@ -97,6 +98,16 @@
     renderTimeline(plan);
     renderRouteOnMap(plan);
     document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  /* 规划失败时清空上一次的结果，避免旧路线残留造成误导 */
+  function clearRoute() {
+    document.getElementById('routeSub').textContent = '';
+    document.getElementById('summary').innerHTML = '';
+    document.getElementById('timeline').innerHTML = '';
+    document.getElementById('placeholder').style.display = '';
+    document.getElementById('layer-route').innerHTML = '';
+    document.getElementById('layer-tags').innerHTML = '';
   }
 
   function renderWarnings(skipped) {

@@ -103,4 +103,13 @@ t('大规模途经点（全部开放雪道 + 全部休息站）也能一次规�
   for (let i = 1; i < segs.length; i++) assert.strictEqual(segs[i].from, segs[i - 1].to);
 });
 
+t('途经点不可达时抛出错误（界面据此提示规划失败并清空旧路线）', () => {
+  const r = JSON.parse(JSON.stringify(RESORT));
+  r.lifts.find(l => l.id === 'L2').open = false; // 云顶缆车停运 → 云顶不可达
+  assert.throws(
+    () => Router.planRoute(r, { liftId: 'L1', skill: 2, mode: 'balanced', slopeIds: [], restIds: ['R2'] }),
+    /不可达|无法规划/
+  );
+});
+
 console.log('\n全部通过：' + passed + ' 项测试 ✅\n');
