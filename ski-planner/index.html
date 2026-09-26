@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>雪岭滑雪场 · 智能雪道路线推荐</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="wrap">
+      <h1>⛷️ 雪岭滑雪场 · 智能雪道路线推荐</h1>
+      <p>选择所在缆车、水平等级与想去的目标，系统综合 <b>难度 / 长度 / 拥挤度 / 开放状态</b> 规划路线，
+         并清楚标注每一段的风险。已关闭的雪道与缆车不参与计算。</p>
+    </div>
+  </header>
+
+  <main class="layout wrap">
+    <aside class="panel">
+      <section class="card">
+        <h2>① 所在缆车</h2>
+        <select id="lift-select"></select>
+        <p class="hint">从所选缆车的下站出发，首段乘坐该缆车上山。</p>
+      </section>
+
+      <section class="card">
+        <h2>② 水平等级</h2>
+        <div id="skill-group" class="skill-group"></div>
+      </section>
+
+      <section class="card">
+        <h2>③ 想去的雪道</h2>
+        <div id="trail-list" class="item-list"></div>
+      </section>
+
+      <section class="card">
+        <h2>④ 想去的休息站</h2>
+        <div id="rest-list" class="item-list"></div>
+      </section>
+
+      <button id="plan-btn" class="plan-btn">🎿 重新规划路线</button>
+    </aside>
+
+    <section class="content">
+      <div id="banner"></div>
+      <div id="summary" class="summary"></div>
+
+      <div class="card map-card">
+        <h2>雪场示意图<small>推荐路线的颜色 = 该段风险等级</small></h2>
+        <div id="map"></div>
+        <div class="legend">
+          <span><i class="lg dot" style="background:#27ae60"></i>绿道</span>
+          <span><i class="lg dot" style="background:#2980d9"></i>蓝道</span>
+          <span><i class="lg dot" style="background:#e74c3c"></i>红道</span>
+          <span><i class="lg dot" style="background:#2c3e50"></i>黑道</span>
+          <span><i class="lg line" style="background:#8e44ad"></i>缆车</span>
+          <span><i class="lg dash"></i>已关闭</span>
+          <span><i class="lg risk" style="background:#2ecc71"></i>路线段·低风险</span>
+          <span><i class="lg risk" style="background:#f39c12"></i>中风险</span>
+          <span><i class="lg risk" style="background:#e74c3c"></i>高风险</span>
+          <span>☕ 休息站</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>推荐路线与分段风险</h2>
+        <div id="route"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>雪岭滑雪场路线推荐 Demo · 数据为示例数据，风险评级仅供参考，请遵守雪场现场安全指引</footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/graph.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
