@@ -1,0 +1,13 @@
+{
+  "name": "cloudpeak-ski-recommender",
+  "version": "1.0.0",
+  "description": "云顶滑雪场雪道智能推荐：基于难度/长度/拥挤度/开放状态的图最短路路线推荐",
+  "type": "module",
+  "scripts": {
+    "test": "node src/engine.test.js && node src/ui.test.js",
+    "start": "node --watch -e \"import('node:http').then(({createServer})=>{import('node:fs').then(({readFileSync})=>{const s=createServer((q,r)=>{const f=q.url==='/'?'/index.html':q.url;try{const t=readFileSync('.'+f);r.end(t)}catch{r.statusCode=404;r.end()}});s.listen(8000,()=>console.log('http://localhost:8000'))})})\""
+  },
+  "devDependencies": {
+    "jsdom": "^26.0.0"
+  }
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>云顶滑雪场 · 雪道智能推荐</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="app">
+      <h1><span class="flake">🏔️</span>云顶滑雪场 · 雪道智能推荐</h1>
+      <p>选择你所在的缆车、滑雪水平、目标雪道与休息站，系统综合<b>难度、长度、拥挤度与开放状态</b>推荐一条最适合的完整路线，关闭雪道不参与计算。</p>
+    </header>
+
+    <div class="layout">
+      <!-- 左侧：输入面板 -->
+      <aside class="card" id="panel">
+        <h2>我的滑雪计划</h2>
+
+        <div class="field">
+          <label>我所在的缆车（起点为缆车上站）</label>
+          <select id="lift"></select>
+        </div>
+
+        <div class="field">
+          <label>滑雪水平等级</label>
+          <div class="level-group" id="levels"></div>
+        </div>
+
+        <div class="field">
+          <label>想去的雪道（目标雪道）</label>
+          <select id="target"></select>
+          <div class="hint">关闭雪道不可选择；选择超出水平的雪道会收到安全拦截提示。</div>
+        </div>
+
+        <div class="field">
+          <label>想经过的休息站（可选）</label>
+          <select id="rest"></select>
+          <div class="hint">系统会自动比较"先休息再滑雪"与"滑完再休息"两种顺序，取更优方案。</div>
+        </div>
+
+        <button class="go-btn" id="go">获取推荐路线</button>
+      </aside>
+
+      <!-- 右侧：地图 + 结果 -->
+      <main>
+        <div class="card map-card">
+          <h2>雪场实时地图与推荐路线</h2>
+          <svg id="map" class="map-svg" viewBox="0 0 760 620" role="img" aria-label="雪场地图"></svg>
+          <div class="legend">
+            <span class="item"><span class="ln" style="border-color:#22c55e"></span>初级道</span>
+            <span class="item"><span class="ln" style="border-color:#3b82f6"></span>中级道</span>
+            <span class="item"><span class="ln" style="border-color:#ef4444"></span>高级道</span>
+            <span class="item"><span class="ln" style="border-color:#cbd5e1"></span>专家道</span>
+            <span class="item"><span class="ln" style="border-color:#a78bfa;border-top-style:dashed"></span>缆车</span>
+            <span class="item"><span class="ln" style="border-color:#facc15;border-top-width:5px"></span>推荐路线</span>
+            <span class="item"><span class="ln" style="border-color:#475569;border-top-style:dashed"></span>关闭雪道</span>
+            <span class="item">风险点：🔴高 / 🟡中 / 🟢低</span>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:18px">
+          <h2>推荐路线与逐段风险</h2>
+          <div class="summary" id="summary"></div>
+          <div class="order-note" id="orderNote"></div>
+          <div class="timeline" id="timeline"></div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
